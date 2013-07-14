@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Payment form</title>
+</head>
+<body>
+<form action="/hsbc/process.php" method="post">
+	<table>
+		<tr>
+			<td><label>Card Number:</label></td>
+			<td><input type="text" name="card_num"></td>
+		</tr>
+		<tr>
+			<td><label>Card Name:</label></td><td><input type="text" name="card_name"></td>
+		</tr>
+		<tr>
+			<td><label>Card Type:</label></td><td><select name="card_type"><option value="VISA">Visa</option><option value="MC">Master Card</option><option value="MAESTRO">Maestro Card</option></select></td>
+		</tr>
+		<tr>
+			<td><label>Card Issue Date(MMYY format, only for maestro):</label></td><td><input type="text" name="card_issue"></td>
+		</tr>
+		<tr>
+			<td><label>Card Exp Date(MMYY format):</label></td><td><input type="text" name="card_exp"></td>
+		</tr>
+		<tr>
+			<td><label>CCV2:</label></td><td><input type="text" name="card_cvn"></td>
+		</tr>
+		<tr>
+			<td><label>Country:</label></td><td><input type="text" name="country"></td>
+		</tr>
+		<tr>
+			<td><label>Street Address:</label></td><td><input type="text" name="street"></td>
+		</tr>
+		<tr>
+			<td><label>Postal Code:</label></td><td><input type="text" name="postal_code"></td>
+		</tr>
+	</table>
+	<hr>
+	<label>Amount(In Pence):</label><input type="text" name="amount">
+	<label>Payment Type:</label><select name="payment_type"><option value="regular">Regular Payment</option><option value="schedule">Schedule Payment for 1 year each month</option></select><br>
+	<input type="submit" value="Submit">
+</form>
+</body>
+</html>
