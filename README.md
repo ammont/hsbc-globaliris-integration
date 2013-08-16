@@ -1,4 +1,4 @@
-Globaliris (HSBC payment) Integration
+Global Iris (HSBC payment) Integration
 ======================
 
 Global Iris (HSBC new payment gateway) Integration Class
@@ -7,7 +7,7 @@ https://resourcecentre.globaliris.com/
 
 You can find a sample remote payment gateway in index.php, process.php is the the sender to and return.php is the reciever from 3D Secure.
 
-You can also change the payment gateway configs on different scenarios based on Global Iris doc in remote_payment.class.php using the RemotePayment::$setting static property.
+You can also change the payment gateway configs on different scenarios based on Global Iris doc in RemotePayment.class.php using the RemotePayment::$setting static property.
 
 here is the default configuration:
 
@@ -29,7 +29,7 @@ here is the default configuration:
 here is the scenarios documentaion: https://resourcecentre.globaliris.com/products.html?doc_id=102&id=124
 
 
-please consinder that this class if only ofr remote gateway, not redirect, it also has support for 3D Secure.
+please consinder that, this class is only for remote gateway, not redirect, it also has support for 3D Secure.
 
 Here is how you would implement a regular payment gateway whithout 3D Secure:
 
@@ -77,9 +77,9 @@ Here is how you would implement a payment with Adress Verification (AVS):
 	$payment->authorize(); // the return array will also include the AVS check result
 
 
-Implementing the remote payment gateway with 3D SEcure support need a little more work, here is how you would do it:
+Implementing the remote payment gateway with 3D Secure support needs a little more work, here is how you would do it:
 
-for 3D secure we have a redirect to the issuing bank for checking the password, so we need to have 2 steps, a step for code that redirects the user to the bank and another step for returning the user from the bank and completing the payment, there is functional sample payment gateway implemented in process.php and return.php files which you can take a look at. first lets take a look at the first step:
+for 3D secure we have a redirect to the issuing bank for checking the password, so we need to have 2 steps, a step for code that redirects the user to the bank and another step for returning the user from the bank and completing the payment, there is a functional sample payment gateway implemented in process.php and return.php files which you can take a look at. first lets take a look at the first step:
 
 	$payment = new RemotePayment;
 
@@ -91,16 +91,16 @@ for 3D secure we have a redirect to the issuing bank for checking the password, 
 
 	if (is_array($res))
 	{
-		// the was an error which the payment so RemotePayment::send3dSecure() method has returned the result array
+		// there was an error which the payment so RemotePayment::send3dSecure() method has returned the result array
 	}
 	else
 	{
-		// the  first step has been successfull so RemotePayment::send3dSecure() will return the redirec form which you will need to echo
+		// the  first step has been successfull so RemotePayment::send3dSecure() will return the redirect form which you will need to echo
 
 		echo $res;
 	}
 
-ok this will send the user to the bank, then the user enters his/her password an then bank with return the user to the url specified by you with $term_url, when returning The GlobalIris system will send you some parameters in $_POST which you will need to pass to RemotePayment::recieve3dSecure() method, now lets take a look at the return step:
+ok this will send the user to the bank, then the user enters his/her password and bank will return the user to the url specified by you with $term_url, when returning, The GlobalIris system will send you some parameters in $_POST which you will need to pass to RemotePayment::recieve3dSecure() method, now lets take a look at the return step:
 
 	$payment = new RemotePayment;
 
@@ -124,7 +124,7 @@ $res will be an array with the payment result info same as what RemotePayment::a
 
 please note that you can set schedule or AVS check for 3d Secure payments too.
 
-at last you can find a list of parameters used with their description:
+at last you can find a list of parameters used, along with their description:
 
 1. $merchant: your GlobalIris merchant id
 1. $order_id: the order id to track your order, the payment will be submitted with this order id in the GlobalIris Back Office.
@@ -141,12 +141,13 @@ at last you can find a list of parameters used with their description:
 1. $term_url: the url to return the user from 3D secure to.
 
 For Schedule:
+
 1. $alias: the alias for schedule, this will be saved with the scheduled payment, enter what better describes the payment.
 1. $frequency: the schedule frequency, you can use any frequency supported by GlobalIris, you can find the list at the documentation below, example: 'monthly'
 https://resourcecentre.globaliris.com/products.html?doc_id=118&id=177
 1. $repeats: number of times you want the payment to be taken.
 
-###Important Notice###: I have no guarranty that this class would function properly, it might have bugs and mistakes, so you have to use it with your own responsibility and I will not accept any responsibility for any problem، difficulty or damage that using my tool (this class) would cause.
+###Important Notice### : I have no guarranty that this class would function properly, it might have bugs and mistakes, so you have to use it with your own responsibility and I will not accept any responsibility for any problem، difficulty or damage that using my tool (this class) would cause.
 
 	
 
