@@ -26,12 +26,12 @@ here is the default configuration:
 	// 'A' is for Authorize and 'N' is for Not Authorize
 
 
-here is the scenarios documentaion: https://resourcecentre.globaliris.com/products.html?doc_id=102&id=124
+here is the scenarios documentation: https://resourcecentre.globaliris.com/products.html?doc_id=102&id=124
 
 
-please consinder that, this class is only for remote gateway, not redirect, it also has support for 3D Secure.
+please consider that, this class is only for remote gateway, not redirect, it also has support for 3D Secure.
 
-Here is how you would implement a regular payment gateway whithout 3D Secure:
+Here is how you would implement a regular payment gateway without 3D Secure:
 
 	$payment = new RemotePayment;
 
@@ -95,7 +95,7 @@ for 3D secure we have a redirect to the issuing bank for checking the password, 
 	}
 	else
 	{
-		// the  first step has been successfull so RemotePayment::send3dSecure() will return the redirect form which you will need to echo
+		// the  first step has been successful so RemotePayment::send3dSecure() will return the redirect form which you will need to echo
 
 		echo $res;
 	}
@@ -120,7 +120,7 @@ ok this will send the user to the bank, then the user enters his/her password an
 		echo $res['message'].'<br>';
 	}
 
-$res will be an array with the payment result info same as what RemotePayment::authorize() method returns, you can check $res['status'] to determine if the payment have been successfull or not.
+$res will be an array with the payment result info same as what RemotePayment::authorize() method returns, you can check $res['status'] to determine if the payment have been successful or not.
 
 please note that you can set schedule or AVS check for 3d Secure payments too.
 
@@ -148,7 +148,7 @@ https://resourcecentre.globaliris.com/products.html?doc_id=118&id=177
 1. $repeats: number of times you want the payment to be taken.
 
 ### Important Notice:
-I have no guarranty that this class would function properly, it might have bugs and mistakes, so you have to use it with your own responsibility and I will not accept any responsibility for any problem، difficulty or damage that using my tool (this class) would cause.
+I have no guaranty that this class would function properly, it might have bugs and mistakes, so you have to use it with your own responsibility and I will not accept any responsibility for any problem، difficulty or damage that using my tool (this class) would cause.
 
 	
 
