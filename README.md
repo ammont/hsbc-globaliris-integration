@@ -3,6 +3,10 @@ Global Iris (HSBC payment) Integration
 
 Global Iris (HSBC new payment gateway) Integration Class
 
+Docs:
+
+http://ammont.github.io/globaliris-integration
+
 https://resourcecentre.globaliris.com/
 
 You can find a sample remote payment gateway in index.php, process.php is the the sender to and return.php is the reciever from 3D Secure.
