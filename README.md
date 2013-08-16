@@ -147,7 +147,7 @@ For Schedule:
 https://resourcecentre.globaliris.com/products.html?doc_id=118&id=177
 1. $repeats: number of times you want the payment to be taken.
 
-### Important Notice: ### 
+### Important Notice:
 I have no guarranty that this class would function properly, it might have bugs and mistakes, so you have to use it with your own responsibility and I will not accept any responsibility for any problem، difficulty or damage that using my tool (this class) would cause.
 
 	
