@@ -5,7 +5,7 @@ Global Iris (HSBC new payment gateway) Integration Class
 
 Docs:
 
-http://ammont.github.io/globaliris-integration
+http://ammont.github.io/hsbc-globaliris-integration
 
 https://resourcecentre.globaliris.com/
 
