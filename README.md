@@ -14,7 +14,7 @@ You can find a sample remote payment gateway in index.php, process.php is the th
 You can also change the payment gateway configs on different scenarios based on Global Iris doc in RemotePayment.class.php using the RemotePayment::$setting static property.
 
 here is the default configuration:
-
+```php
 	array(
 		's1' => 'A',
 		's2' => 'A',
@@ -28,7 +28,7 @@ here is the default configuration:
 	);
 
 	// 'A' is for Authorize and 'N' is for Not Authorize
-
+```
 
 here is the scenarios documentation: https://resourcecentre.globaliris.com/products.html?doc_id=102&id=124
 
@@ -37,6 +37,7 @@ please consider that, this class is only for remote gateway, not redirect, it al
 
 Here is how you would implement a regular payment gateway without 3D Secure:
 
+```php
 	$payment = new RemotePayment;
 
 	$payment->setInfo($merchant, $order_id, $amount, $secret, $account);
@@ -44,19 +45,23 @@ Here is how you would implement a regular payment gateway without 3D Secure:
 	$payment->setCartInfo($card_num, $card_exp, $card_name, $card_type, $maestro_issue, $ccv2, $presind);
 
 	$payment->authorize();
+```
 
 the authorize method will return an array with the below structure:
 
+```php
 	array(
 		'status' => 'error', // the payment result status 'success' for successful payment and 'error' for 
 							// unsuccessful payment
 		'message' => 'Invalid card number', // the returned message from HSBC
 		'code' => 'A' // the returned code from HSBC
 	);
+```
 
 
 Here is how you would implement a scheduled payment:
 
+```php
 	$payment = new RemotePayment;
 
 	$payment->setInfo($merchant, $order_id, $amount, $secret, $account);
@@ -66,10 +71,12 @@ Here is how you would implement a scheduled payment:
 	$payment->setSchedule($alias, $frequency, $repeats);
 
 	$payment->authorize(); // the return array will also include the schedule result
+```
 
 
 Here is how you would implement a payment with Adress Verification (AVS):
 
+```php
 	$payment = new RemotePayment;
 
 	$payment->setInfo($merchant, $order_id, $amount, $secret, $account);
@@ -79,12 +86,13 @@ Here is how you would implement a payment with Adress Verification (AVS):
 	$payment->setAddressInfo($country, $street_num, $postal_code);
 
 	$payment->authorize(); // the return array will also include the AVS check result
-
+```
 
 Implementing the remote payment gateway with 3D Secure support needs a little more work, here is how you would do it:
 
 for 3D secure we have a redirect to the issuing bank for checking the password, so we need to have 2 steps, a step for code that redirects the user to the bank and another step for returning the user from the bank and completing the payment, there is a functional sample payment gateway implemented in process.php and return.php files which you can take a look at. first lets take a look at the first step:
 
+```php
 	$payment = new RemotePayment;
 
 	$payment->setInfo($merchant, $order_id, $amount, $secret, $account);
@@ -103,9 +111,11 @@ for 3D secure we have a redirect to the issuing bank for checking the password, 
 
 		echo $res;
 	}
+```
 
 ok this will send the user to the bank, then the user enters his/her password and bank will return the user to the url specified by you with $term_url, when returning, The GlobalIris system will send you some parameters in $_POST which you will need to pass to RemotePayment::recieve3dSecure() method, now lets take a look at the return step:
 
+```php
 	$payment = new RemotePayment;
 
 	$payment->setInfo($merchant, $order_id, $amount, $secret, $account);
@@ -123,6 +133,7 @@ ok this will send the user to the bank, then the user enters his/her password an
 		echo "There was an error with your payment<br>";
 		echo $res['message'].'<br>';
 	}
+```
 
 $res will be an array with the payment result info same as what RemotePayment::authorize() method returns, you can check $res['status'] to determine if the payment have been successful or not.
 
